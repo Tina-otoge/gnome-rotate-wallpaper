@@ -1,0 +1,9 @@
+#!/bin/bash
+
+TIMER=600
+WALLPAPERS_FOLDER="$HOME/Pictures/Wallpapers"
+
+for f in "$WALLPAPERS_FOLDER/"*.{png,jpg,jpeg}; do
+	gsettings set org.gnome.desktop.background picture-uri "file://$(realpath $f)";
+	sleep $TIMER;
+done
