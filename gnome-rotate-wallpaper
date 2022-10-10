@@ -1,9 +1,13 @@
 #!/bin/bash
 
-TIMER=600
-WALLPAPERS_FOLDER="$HOME/Pictures/Wallpapers"
+timer=600
+wallpapers_folder="$HOME/Pictures/Wallpapers"
 
-for f in "$WALLPAPERS_FOLDER/"*.{png,jpg,jpeg}; do
-	gsettings set org.gnome.desktop.background picture-uri "file://$(realpath $f)";
-	sleep $TIMER;
+while true; do
+	pics=`find "$wallpapers_folder/" -type f | shuf`
+	for f in $pics; do
+		gsettings set org.gnome.desktop.background picture-uri "file://$(realpath $f)";
+		# echo $f `date` > ~/tmp/current_wallpaper.log
+		sleep $timer;
+	done
 done
